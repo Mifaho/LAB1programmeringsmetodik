@@ -1,4 +1,4 @@
-#include "int_buffer.h"
+#include "int_sorted.h"
 #include <cstdlib>
 #include <algorithm>
 #include <iostream>

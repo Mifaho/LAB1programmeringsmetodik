@@ -10,10 +10,10 @@
  *
  * Created on den 25 januari 2017, 16:48
  */
-
+#include <cstdlib>
 #ifndef INT_SOORTED_H
 #define INT_SOORTED_H
-/*
+
 class int_sorted{
     int_buffer buffer;
 public:
@@ -23,7 +23,7 @@ public:
     const int* begin() const;
     const int* end() const;
     int_sorted merge(const int_sorted& merge_with) const;
-};*/
+};
 
 #endif /* INT_SOORTED_H */
 
