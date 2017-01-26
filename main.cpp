@@ -12,7 +12,7 @@ int_sorted sort(const int* begin, const int* end){
     ptrdiff_t half = (end-begin)/2;
     const int* mid = begin + half;
     return sort(begin, mid).merge(sort(mid, end));
-}
+}//Dåligt
 
 void f(int_buffer buf) {
     *buf.begin() = 1;
