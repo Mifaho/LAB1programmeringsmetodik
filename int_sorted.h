@@ -10,9 +10,12 @@
  *
  * Created on den 25 januari 2017, 16:48
  */
-#include <cstdlib>
+
 #ifndef INT_SOORTED_H
 #define INT_SOORTED_H
+
+#include "int_buffer.h"
+#include <cstdlib>
 
 class int_sorted{
     int_buffer buffer;

@@ -5,14 +5,14 @@
 #include "int_sorted.h"
 
 using namespace std;
-
+/*
 int_sorted sort(const int* begin, const int* end){
     if(begin == end) return int_sorted();
     if(begin == end - 1) return int_sorted(*begin, 1);
     ptrdiff_t half = (end-begin)/2;
     const int* mid = begin + half;
     return sort(begin, mid).merge(sort(mid, end));
-}//Dåligt
+}*///Dåligt
 
 void f(int_buffer buf) {
     *buf.begin() = 1;

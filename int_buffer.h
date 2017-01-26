@@ -20,7 +20,7 @@ public:
     const int* end() const;
     ~int_buffer();
 };
-
+/*
 class int_sorted{
     int_buffer buffer;
 public:
@@ -30,7 +30,7 @@ public:
     const int* begin() const;
     const int* end() const;
     int_sorted merge(const int_sorted& merge_with) const;
-};
+};*/
 
 #endif /* INT_BUFFER_H */
 

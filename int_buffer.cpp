@@ -38,7 +38,7 @@ start(new int[rhs.size()]) {
     this->ending = &tempArray[tempsize - 1];*/
     //this->current_size = rhs.size();
 
-}
+//}
 
 int_buffer::int_buffer(int_buffer&& rhs):
 start(std::move(rhs.start)), ending(std::move(rhs.ending)) {
