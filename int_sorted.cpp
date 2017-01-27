@@ -38,17 +38,26 @@ int* int_sorted::insert(int value){
 }
 
 const int* int_sorted::begin() const{
-    //return buffer.begin();
+    return (*buffer).begin();
 }
 
 const int* int_sorted::end() const{
-    //return buffer.end();
+    return (*buffer).end();
 }
 
 int_sorted int_sorted::merge(const int_sorted& merge_with) const{
     size_t newsize = buffer->size() + merge_with.buffer->size();
-    
+    int* newarray = new int[newsize];
+    size_t count = 0;
+    for(int* i = (*buffer).begin(); i != (*buffer).end(); i++){
+        newarray[count] = *i;
+        count++;
+    }
+    for(int* i = merge_with.buffer->begin(); i != merge_with.buffer->end(); i++){
+        newarray[count] = *i;
+        count++;
+    }
     //this->buffer = new int_buffer(buffer->begin(), newsize);
-    int_sorted* newsorted = new int_sorted(buffer->begin(), newsize);
+    int_sorted* newsorted = new int_sorted(newarray, newsize);
     return *newsorted;
 }
