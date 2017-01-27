@@ -27,6 +27,15 @@ void f(int_buffer buf) {
  }
 
 int main(int argc, char** argv) {
+    int array[10];
+    array[0] = 0;
+    array[1] = 1;
+    for(int i = 0; i < 10; i++){
+        cout <<  i << " värde: " << array[i] << endl;
+        if(array[i] == NULL){
+            cout << i << " är null " << endl;
+        }
+    }
     f(int_buffer(10));
     return 0;
 }

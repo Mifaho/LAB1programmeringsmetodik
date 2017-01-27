@@ -14,6 +14,17 @@ buffer(new int_buffer(source, size))*/
 //}
 
 int* int_sorted::insert(int value){
+    /*size_t count = 1;
+    int* i = buffer.begin();
+    for(; i != buffer.end() && i != nullptr; i++){
+        count++;
+    }
+    if(buffer.size() != count){
+        *i = value;
+    }
+    else{
+        buffer = new int_buffer(buffer.begin(), buffer.size() + 10);
+    }*/
     /*int_buffer tempbuffer(buffer.begin(), buffer.size() + 1);
     buffer = tempbuffer;
     *(buffer.end()) = value;
