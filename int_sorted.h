@@ -23,6 +23,7 @@ public:
     int_sorted();
     int_sorted(const int* source, size_t size);
     size_t size() const;
+    bool checksorted();
     int* insert(int value);
     const int* begin() const;
     const int* end() const;

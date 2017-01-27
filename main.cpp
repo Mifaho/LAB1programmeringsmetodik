@@ -10,8 +10,14 @@ const int* starter;
 const int* ender;
 
 int_sorted sort(const int* begin, const int* end){
-    if(begin == end) return int_sorted();
-    if(begin == end - 1) return int_sorted(begin, 1);
+    if(begin == end){
+        cout << "no elements?" << endl;
+        return int_sorted();
+    }
+    if(begin == end - 1){
+        cout << "one element?" << endl;
+        return int_sorted(begin, 1);
+    }
     ptrdiff_t half = (end-begin)/2;
     const int* mid = begin + half;
     cout << "round: " << number << endl;

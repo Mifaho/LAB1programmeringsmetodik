@@ -11,7 +11,19 @@ int_sorted::int_sorted(const int* source, size_t size) {//Varför denna ej funge
     this->buffer = new int_buffer(source, size);
 }
 
+size_t int_sorted::size(){
+    (*buffer).size();
+}
 
+bool int_sorterd::checksorted(){
+    size_t tempsize = (*buffer).size();
+    for(int* i = (*buffer).begin(); i < ((*buffer).begin() + tempsize - 1); i++){
+        if( *i > *(i + 1)){
+            return false;
+        }
+    }
+    return true;
+}
 /*:
 buffer(new int_buffer(source, size))*/
 
@@ -46,6 +58,7 @@ const int* int_sorted::end() const {
 }
 
 int_sorted int_sorted::merge(const int_sorted& merge_with) const {
+    std::cout << "merging" << std::endl; 
     size_t newsize = buffer->size() + merge_with.buffer->size();
     int* i = (*buffer).begin();
     int* j = merge_with.buffer->begin();
