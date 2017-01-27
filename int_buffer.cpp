@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iostream>
 
+
 int_buffer::int_buffer(size_t size) :
 start(new int[size]), ending(start + size) {
     for(int i = 0; i < size; i++){

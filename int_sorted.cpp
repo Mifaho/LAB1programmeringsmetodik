@@ -3,6 +3,10 @@
 #include <algorithm>
 #include <iostream>
 
+int_sorted::int_sorted(){
+    
+}
+
 int_sorted::int_sorted(const int* source, size_t size){//Varför denna ej fungera?
     this->buffer = new int_buffer(source, size);
 }
@@ -42,8 +46,9 @@ const int* int_sorted::end() const{
 }
 
 int_sorted int_sorted::merge(const int_sorted& merge_with) const{
-    /*for(const int* i = merge_with.begin(); i != merge_with.end(); i++){
-        insert(*i);
-    }*/
-    return *this;
+    size_t newsize = buffer->size() + merge_with.buffer->size();
+    
+    //this->buffer = new int_buffer(buffer->begin(), newsize);
+    int_sorted* newsorted = new int_sorted(buffer->begin(), newsize);
+    return *newsorted;
 }
