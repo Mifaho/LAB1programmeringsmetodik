@@ -1,7 +1,6 @@
 
 #include <cstdlib>
 #include <iostream>
-#include "int_buffer.h"
 #include "int_sorted.h"
 
 using namespace std;
