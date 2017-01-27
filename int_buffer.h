@@ -7,6 +7,7 @@ class int_buffer {
     int* start;
     int* ending;
 public:
+    int_buffer() = delete;
     explicit int_buffer(size_t size);
     int_buffer(const int* source, size_t size);
     int_buffer(const int_buffer& rhs);

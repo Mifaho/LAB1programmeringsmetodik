@@ -3,7 +3,8 @@
 #include <algorithm>
 #include <iostream>
 
-int_sorted::int_sorted(const int* source, size_t size):buffer(new int_buffer(source, size)){//Varför denna ej fungera?
+int_sorted::int_sorted(const int* source, size_t size){//Varför denna ej fungera?
+    this->buffer = new int_buffer(source, size);
 }
 
 

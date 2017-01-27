@@ -19,7 +19,7 @@
 
 class int_sorted{
 public:
-    int_buffer buffer;
+    int_buffer* buffer;
     int_sorted(const int* source, size_t size);
     size_t size() const;
     int* insert(int value);
