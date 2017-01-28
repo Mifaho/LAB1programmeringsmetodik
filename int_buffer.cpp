@@ -8,35 +8,28 @@
 #include <algorithm>
 #include <iostream>
 
-int_buffer::int_buffer():start(new int[1]), ending(start){
+int_buffer::int_buffer() : start(new int[1]), ending(start) {
 }
 
 int_buffer::int_buffer(size_t size) :
 start(new int[size]), ending(start + size) {
-    for (int i = 0; i < size; i++) {
-        //start[i] = nullptr;
-    }
 }
 
 int_buffer::int_buffer(const int* source, size_t size) {
-    std::cout << "int_buffer size: " << size << std::endl;
-    int tempArray [size];
-    for (int i = 0; i < size; i++) {
-        std::cout << "*source: " << *source << std::endl;
-        if (source != nullptr) {
-            tempArray[i] = *source;
-            ++source;
-        }
+    start = new int[size];
+    
+    const int* tempend = source + size;
+    while (source != tempend) {
+        
+        *start = *source;
+        source++;
+        start++;
     }
-    this->start = tempArray;
-    this->ending = tempArray + size;
-    std::cout << " in int_buffer::int_buffer for: " << std::endl;
-    for (int* i = start; i != ending; i++) {
-        std::cout << *i << ", ";
-    }
-
-    std::cout << std::endl;
-    //this->current_size = size;
+    ending = start;
+    start = ending - size;
+    /*for (int* i = start; i != end(); i++) {
+        std::cout << *i << std::endl;
+    }*/
 }
 
 int_buffer::int_buffer(const int_buffer& rhs) :
@@ -83,10 +76,10 @@ int_buffer & int_buffer::operator=(int_buffer&& rhs) {
 }
 
 size_t int_buffer::size() const {
-    if(begin() == end()){
+    if (begin() == end()) {
         return 0;
     }
-    size_t counter = 1;
+    size_t counter = 0;
     for (const int* i = begin(); i != end(); i++) {
         ++counter;
     }

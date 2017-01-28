@@ -58,11 +58,11 @@ const int* int_sorted::end() const {
 }
 
 int_sorted int_sorted::merge(const int_sorted& merge_with) const {
-    std::cout << "merging" << std::endl;
-    std::cout << "merge_with.buffer->begin() " << *(merge_with.buffer->begin()) << std::endl;
-    std::cout << "(*buffer).begin() " << *((*buffer).begin()) << std::endl;
+    //std::cout << "merging" << std::endl;
+    //std::cout << "merge_with.buffer->begin() " << *(merge_with.buffer->begin()) << std::endl;
+    //std::cout << "(*buffer).begin() " << *((*buffer).begin()) << std::endl;
     size_t newsize = buffer->size() + merge_with.buffer->size();
-    std::cout << "newsize: " << newsize << std::endl;
+    //std::cout << "newsize: " << newsize << std::endl;
     int* i = (*buffer).begin();
     int* j = merge_with.buffer->begin();
     int* newarray = new int[newsize];
@@ -70,24 +70,24 @@ int_sorted int_sorted::merge(const int_sorted& merge_with) const {
     while (i != (*buffer).end() && j != merge_with.buffer->end()) {
         if (*i > *j) {
             newarray[count] = *j;
-            std::cout << "j: " << *j << std::endl;
+            //std::cout << "j: " << *j << std::endl;
             j++;
             count++;
         } else {
             newarray[count] = *i;
-            std::cout << "i: " << *i << std::endl;
+            //std::cout << "i: " << *i << std::endl;
             i++;
             count++;
         }
     }
     while (i != (*buffer).end()) {
-        std::cout << "i: " << *i << std::endl;
+        //std::cout << "i: " << *i << std::endl;
         newarray[count] = *i;
         i++;
         count++;
     }
     while (j != merge_with.buffer->end()) {
-            std::cout << "j: " << *j << std::endl;
+        //std::cout << "j: " << *j << std::endl;
         newarray[count] = *j;
         j++;
         count++;
