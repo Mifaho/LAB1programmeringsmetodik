@@ -8,22 +8,34 @@
 #include <algorithm>
 #include <iostream>
 
+int_buffer::int_buffer():start(new int[1]), ending(start){
+}
 
 int_buffer::int_buffer(size_t size) :
 start(new int[size]), ending(start + size) {
-    for(int i = 0; i < size; i++){
+    for (int i = 0; i < size; i++) {
         //start[i] = nullptr;
     }
 }
 
 int_buffer::int_buffer(const int* source, size_t size) {
+    std::cout << "int_buffer size: " << size << std::endl;
     int tempArray [size];
-    for (int i = 0; source != nullptr && i < size; i++) {
-        tempArray[i] = *source;
-        ++source;
+    for (int i = 0; i < size; i++) {
+        std::cout << "*source: " << *source << std::endl;
+        if (source != nullptr) {
+            tempArray[i] = *source;
+            ++source;
+        }
     }
     this->start = tempArray;
-    this->ending = &tempArray[size - 1];
+    this->ending = tempArray + size;
+    std::cout << " in int_buffer::int_buffer for: " << std::endl;
+    for (int* i = start; i != ending; i++) {
+        std::cout << *i << ", ";
+    }
+
+    std::cout << std::endl;
     //this->current_size = size;
 }
 
@@ -32,19 +44,19 @@ start(new int[rhs.size()]) {
     std::copy(rhs.begin(), rhs.end(), begin());
     ending = start + rhs.size();
 }
-    /*size_t tempsize = rhs.size();
-    int tempArray [tempsize];
-    const int* tempConstArray = rhs.begin();
-    for (int i = 0; i < tempsize; i++) {
-        tempArray[i] = tempConstArray[i];
-    }
-    this->start = tempArray;
-    this->ending = &tempArray[tempsize - 1];*/
-    //this->current_size = rhs.size();
+/*size_t tempsize = rhs.size();
+int tempArray [tempsize];
+const int* tempConstArray = rhs.begin();
+for (int i = 0; i < tempsize; i++) {
+    tempArray[i] = tempConstArray[i];
+}
+this->start = tempArray;
+this->ending = &tempArray[tempsize - 1];*/
+//this->current_size = rhs.size();
 
 //}
 
-int_buffer::int_buffer(int_buffer&& rhs):
+int_buffer::int_buffer(int_buffer&& rhs) :
 start(std::move(rhs.start)), ending(std::move(rhs.ending)) {
 }
 
@@ -64,13 +76,16 @@ int_buffer & int_buffer::operator=(const int_buffer& rhs) {
 
 }
 
-int_buffer & int_buffer::operator=(int_buffer&& rhs){
+int_buffer & int_buffer::operator=(int_buffer&& rhs) {
     start = std::move(rhs.start);
     ending = std::move(rhs.ending);
     return *this;
 }
 
 size_t int_buffer::size() const {
+    if(begin() == end()){
+        return 0;
+    }
     size_t counter = 1;
     for (const int* i = begin(); i != end(); i++) {
         ++counter;

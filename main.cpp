@@ -10,6 +10,9 @@ const int* starter;
 const int* ender;
 
 int_sorted sort(const int* begin, const int* end){
+    cout << "round: " << number << endl;
+    cout <<  "Current begin: " <<*begin << endl;
+    cout << "Current end: "<<*end << endl;
     if(begin == end){
         cout << "no elements?" << endl;
         return int_sorted();
@@ -20,17 +23,28 @@ int_sorted sort(const int* begin, const int* end){
     }
     ptrdiff_t half = (end-begin)/2;
     const int* mid = begin + half;
-    cout << "round: " << number << endl;
     number++;
-    cout << "begin: " << *begin << endl;
     cout << "mid: " << *mid << endl;
-    cout << "end: " << *end << endl;
     cout << "Currently in the array: "; 
     for(const int* i = starter; i != ender; i++){
         cout << *i << ", ";
     }
     cout << endl;
-    return sort(begin, mid).merge(sort(mid, end));
+    int_sorted tempsort1 = sort(begin, mid);
+    int_sorted tempsort2 = sort(mid, end);
+    cout << "tempsort1 begin: "<< *(tempsort1.begin()) << endl;
+    cout << "tempsort1 end: " << *(tempsort1.end()) << endl;
+    cout << "tempsort1 size: " << tempsort1.size() << endl;
+    for(const int* i = tempsort1.begin(); i != tempsort1.end(); i++){
+        cout << *i << ", " << endl;
+    }
+    cout << "tempsort2 begin: "<< *(tempsort2.begin()) << endl;
+    cout << "tempsort2 end: " << *(tempsort2.end()) << endl;
+    cout << "tempsort2 size: " << tempsort2.size() << endl;
+    for(const int* i = tempsort2.begin(); i != tempsort1.end(); i++){
+        cout << *i << ", " << endl;
+    }
+    return tempsort1.merge(tempsort2);
 }
 
 void f(int_buffer buf) {
@@ -40,11 +54,14 @@ void f(int_buffer buf) {
     {
         *(i + 1) = *i + 1;
     }
-    const int temparray[10] = {3, 40, 20, 21 ,10 , 11, 23, 22, 12, 33};
+    const int temparray[4] = {3, 40, 20, 21};
     starter = temparray;
-    ender = temparray + 10;
+    ender = temparray + 4;
     cout << *ender << endl;
-    sort( temparray, (temparray + 10));
+    int_sorted sortedlul = sort( temparray, (temparray + 4));
+    for(const int* i = sortedlul.buffer->begin(); i < sortedlul.buffer->end(); i++){
+        cout << *i << endl;
+    }
  }
 
 int main(int argc, char** argv) {

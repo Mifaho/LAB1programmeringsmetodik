@@ -4,21 +4,21 @@
 #include <iostream>
 
 int_sorted::int_sorted() {
-
+    buffer = new int_buffer();
 }
 
 int_sorted::int_sorted(const int* source, size_t size) {//Varför denna ej fungera?
     this->buffer = new int_buffer(source, size);
 }
 
-size_t int_sorted::size(){
+size_t int_sorted::size() const {
     (*buffer).size();
 }
 
-bool int_sorterd::checksorted(){
+bool int_sorted::checksorted() {
     size_t tempsize = (*buffer).size();
-    for(int* i = (*buffer).begin(); i < ((*buffer).begin() + tempsize - 1); i++){
-        if( *i > *(i + 1)){
+    for (int* i = (*buffer).begin(); i < ((*buffer).begin() + tempsize - 1); i++) {
+        if (*i > *(i + 1)) {
             return false;
         }
     }
@@ -58,8 +58,11 @@ const int* int_sorted::end() const {
 }
 
 int_sorted int_sorted::merge(const int_sorted& merge_with) const {
-    std::cout << "merging" << std::endl; 
+    std::cout << "merging" << std::endl;
+    std::cout << "merge_with.buffer->begin() " << *(merge_with.buffer->begin()) << std::endl;
+    std::cout << "(*buffer).begin() " << *((*buffer).begin()) << std::endl;
     size_t newsize = buffer->size() + merge_with.buffer->size();
+    std::cout << "newsize: " << newsize << std::endl;
     int* i = (*buffer).begin();
     int* j = merge_with.buffer->begin();
     int* newarray = new int[newsize];
@@ -67,20 +70,24 @@ int_sorted int_sorted::merge(const int_sorted& merge_with) const {
     while (i != (*buffer).end() && j != merge_with.buffer->end()) {
         if (*i > *j) {
             newarray[count] = *j;
+            std::cout << "j: " << *j << std::endl;
             j++;
             count++;
         } else {
             newarray[count] = *i;
+            std::cout << "i: " << *i << std::endl;
             i++;
             count++;
         }
     }
     while (i != (*buffer).end()) {
+        std::cout << "i: " << *i << std::endl;
         newarray[count] = *i;
         i++;
         count++;
     }
     while (j != merge_with.buffer->end()) {
+            std::cout << "j: " << *j << std::endl;
         newarray[count] = *j;
         j++;
         count++;
