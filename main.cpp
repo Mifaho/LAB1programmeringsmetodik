@@ -29,6 +29,12 @@ void f(int_buffer buf) {
 
     size_t length = 8;
     const int temparray[] = {3, 40, 20, 21, 13, 14, 22, 1};
+    int_sorted empty;
+    empty.insert(7);
+    empty.insert(4);
+    for (const int* i = empty.buffer->begin(); i < empty.buffer->end(); i++) {
+        cout << *i << endl;
+    }
     int_sorted sorted = sort(temparray, (temparray + length));
     cout << "final result" << endl;
     for (const int* i = sorted.buffer->begin(); i < sorted.buffer->end(); i++) {
