@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "int_sorted.h"
+#include <time.h> 
 
 using namespace std;
 
@@ -22,35 +23,38 @@ int_sorted sort(const int* begin, const int* end) {
 }
 
 void f(int_buffer buf) {
+    cout << "Function: f" << endl;
     *buf.begin() = 1;
     for (int* i = buf.begin(); i != buf.end(); i++) {
         *(i + 1) = *i + 1;
     }
+    for(const int* i = buf.begin(); i != buf.end(); i++){
+        cout << *i << ", ";
+    }
+    cout << endl;
+}
 
-    size_t length = 8;
-    const int temparray[] = {3, 40, 20, 21, 13, 14, 22, 1};
-    int_sorted empty;
-    empty.insert(7);
-    empty.insert(4);
-    for (const int* i = empty.buffer->begin(); i < empty.buffer->end(); i++) {
-        cout << *i << endl;
+void commenceSorting() {
+    cout << "Function: commenceSorting" << endl;
+    srand(time(NULL));
+    int_sorted sorted;
+    cout << "unsorted" << endl;
+    for (int i = 0; i < 100; i++) {
+        cout << *((sorted.insert(rand() % 100 + 1)) - 1) << ", ";
     }
-    int_sorted sorted = sort(temparray, (temparray + length));
-    cout << "final result" << endl;
-    for (const int* i = sorted.buffer->begin(); i < sorted.buffer->end(); i++) {
-        cout << *i << endl;
-    }
+    cout << endl;
+    sorted = sort(sorted.begin(), sorted.end());
     cout << "sorted" << endl;
-    cout << "Adding 5 and 6" << endl;
-    sorted.insert(5);
-    sorted.insert(6);
     for (const int* i = sorted.buffer->begin(); i < sorted.buffer->end(); i++) {
-        cout << *i << endl;
+        cout << *i << ", ";
     }
+    cout << endl;
 }
 
 int main(int argc, char** argv) {
     f(int_buffer(10));
+    cout << endl;
+    commenceSorting();
     return 0;
 }
 
