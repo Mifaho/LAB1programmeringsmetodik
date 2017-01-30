@@ -26,9 +26,6 @@ int_buffer::int_buffer(const int* source, size_t size) {
     }
     ending = start;
     start = ending - size;
-    /*for (int* i = start; i != end(); i++) {
-        std::cout << *i << std::endl;
-    }*/
 }
 
 int_buffer::int_buffer(const int_buffer& rhs) :
@@ -36,17 +33,6 @@ start(new int[rhs.size()]) {
     std::copy(rhs.begin(), rhs.end(), begin());
     ending = start + rhs.size();
 }
-/*size_t tempsize = rhs.size();
-int tempArray [tempsize];
-const int* tempConstArray = rhs.begin();
-for (int i = 0; i < tempsize; i++) {
-    tempArray[i] = tempConstArray[i];
-}
-this->start = tempArray;
-this->ending = &tempArray[tempsize - 1];*/
-//this->current_size = rhs.size();
-
-//}
 
 int_buffer::int_buffer(int_buffer&& rhs) :
 start(std::move(rhs.start)), ending(std::move(rhs.ending)) {
@@ -56,16 +42,7 @@ int_buffer & int_buffer::operator=(const int_buffer& rhs) {
     start = new int[rhs.size()];
     std::copy(rhs.begin(), rhs.end(), begin());
     ending = start + rhs.size();
-    /*int tempArray [rhs.size()];
-    const int* tempConstArray = rhs.begin();
-    for (int i = 0; i < rhs.size(); i++) {
-        tempArray[i] = tempConstArray[i];
-    }
-    this->start = tempArray;
-    this->ending = &tempArray[rhs.size() - 1];*/
     return *this;
-    //this->current_size = rhs.size();
-
 }
 
 int_buffer & int_buffer::operator=(int_buffer&& rhs) {

@@ -28,27 +28,39 @@ void f(int_buffer buf) {
     for (int* i = buf.begin(); i != buf.end(); i++) {
         *(i + 1) = *i + 1;
     }
-    for(const int* i = buf.begin(); i != buf.end(); i++){
+    for (const int* i = buf.begin(); i != buf.end(); i++) {
         cout << *i << ", ";
     }
     cout << endl;
 }
 
 void commenceSorting() {
-    cout << "Function: commenceSorting" << endl;
+    cout << "Function: commenceSorting" << endl << endl;
     srand(time(NULL));
+    const int* pointer;
     int_sorted sorted;
-    cout << "unsorted" << endl;
-    for (int i = 0; i < 100; i++) {
-        cout << *((sorted.insert(rand() % 100 + 1)) - 1) << ", ";
+
+    for (int i = 0; i < 25; i++) {
+        cout << *((sorted.insert(rand() % 25 + 1)) - 1) << ", ";
     }
     cout << endl;
+    if (!sorted.checksorted()) {
+        cout << "unsorted" << endl;
+    }
+    cout << endl << "Selectionsort" << endl;
+    int_sorted selectsorted = sorted.selectionSort();
+    for (const int* i = selectsorted.buffer->begin(); i < selectsorted.buffer->end(); i++) {
+        cout << *i << ", ";
+    }
+    cout << endl << "Mergesort" << endl;
     sorted = sort(sorted.begin(), sorted.end());
-    cout << "sorted" << endl;
     for (const int* i = sorted.buffer->begin(); i < sorted.buffer->end(); i++) {
         cout << *i << ", ";
     }
     cout << endl;
+    if (sorted.checksorted()) {
+        cout << "sorted" << endl;
+    }
 }
 
 int main(int argc, char** argv) {

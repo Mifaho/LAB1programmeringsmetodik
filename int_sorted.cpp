@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <iostream>
+#include <climits>
 
 int_sorted::int_sorted() {
     buffer = new int_buffer();
@@ -40,6 +41,33 @@ const int* int_sorted::begin() const {
 
 const int* int_sorted::end() const {
     return (*buffer).end();
+}
+
+int_sorted int_sorted::selectionSort() {
+    int_sorted tempsort(buffer->begin(), size());
+    if (!checksorted()) {
+        int* front = tempsort.buffer->begin();
+        int* iter = front;
+        int* min = front;
+        int minValue = INT_MAX;
+        while (front != tempsort.buffer->end()) {
+            iter = front;
+            iter++;
+            while (iter != tempsort.buffer->end()) {
+                if (minValue > *iter) {
+                    minValue = *iter;
+                    min = iter;
+                }
+                iter++;
+            }
+            if (min != front && minValue < *front) {
+                std::swap(*min, *front);
+            }
+            front++;
+            minValue = INT_MAX;
+        }
+    }
+    return tempsort;
 }
 
 int_sorted int_sorted::merge(const int_sorted& merge_with) const {

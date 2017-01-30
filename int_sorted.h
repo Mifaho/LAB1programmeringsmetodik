@@ -27,6 +27,7 @@ public:
     int* insert(int value);
     const int* begin() const;
     const int* end() const;
+    int_sorted selectionSort();
     int_sorted merge(const int_sorted& merge_with) const;
 };
 
