@@ -29,7 +29,7 @@ bool int_sorted::checksorted() {
 int* int_sorted::insert(int value) {
     int* pointer = buffer->end();
     *pointer = value;
-    pointer = pointer - buffer->size();
+    pointer = buffer->begin();
     buffer = new int_buffer(pointer, (buffer->size() + 1));
     return buffer->end();
 }
@@ -46,28 +46,23 @@ int_sorted int_sorted::merge(const int_sorted& merge_with) const {
     size_t newsize = buffer->size() + merge_with.buffer->size();
     int* i = (*buffer).begin();
     int* j = merge_with.buffer->begin();
-    int* newarray = new int[newsize];
-    size_t count = 0;
+    int_sorted newsorted;
     while (i != (*buffer).end() && j != merge_with.buffer->end()) {
         if (*i > *j) {
-            newarray[count] = *j;
+            newsorted.insert(*j);
             j++;
         } else {
-            newarray[count] = *i;
+            newsorted.insert(*i);
             i++;
         }
-        count++;
     }
     while (i != (*buffer).end()) {
-        newarray[count] = *i;
+        newsorted.insert(*i);
         i++;
-        count++;
     }
     while (j != merge_with.buffer->end()) {
-        newarray[count] = *j;
+        newsorted.insert(*j);
         j++;
-        count++;
     }
-    int_sorted* newsorted = new int_sorted(newarray, newsize);
-    return *newsorted;
+    return newsorted;
 }
