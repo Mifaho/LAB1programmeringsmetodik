@@ -43,7 +43,6 @@ const int* int_sorted::end() const {
 }
 
 int_sorted int_sorted::merge(const int_sorted& merge_with) const {
-    size_t newsize = buffer->size() + merge_with.buffer->size();
     int* i = (*buffer).begin();
     int* j = merge_with.buffer->begin();
     int_sorted newsorted;
