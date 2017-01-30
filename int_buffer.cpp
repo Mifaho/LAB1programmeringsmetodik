@@ -20,7 +20,6 @@ int_buffer::int_buffer(const int* source, size_t size) {
     
     const int* tempend = source + size;
     while (source != tempend) {
-        
         *start = *source;
         source++;
         start++;
