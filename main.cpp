@@ -1,14 +1,7 @@
-
-#include <cstdlib>
-#include <iostream>
+//main.cpp
 #include "int_sorted.h"
-#include <time.h> 
 
 using namespace std;
-
-//size_t number;
-//const int* starter;
-//const int* ender;
 
 int_sorted sort(const int* begin, const int* end) {
     if (begin == end) {
@@ -34,39 +27,44 @@ void f(int_buffer buf) {
     cout << endl;
 }
 
-void commenceSorting() {
-    cout << "Function: commenceSorting" << endl << endl;
+void selectionSorting() {
+    cout << "Function: selectionSort" << endl << endl;
     srand(time(NULL));
-    const int* pointer;
-    int_sorted sorted;
-
-    for (int i = 0; i < 25; i++) {
-        cout << *((sorted.insert(rand() % 25 + 1)) - 1) << ", ";
+    size_t elements = 40000;
+    int array[40000];
+    for (size_t i = 0; i < elements; i++) {
+        array[i] = (rand() % elements + 1);
     }
+    cout << endl;
+    int_sorted sorted(array, elements);
     cout << endl;
     if (!sorted.checksorted()) {
         cout << "unsorted" << endl;
     }
     cout << endl << "Selectionsort" << endl;
     int_sorted selectsorted = sorted.selectionSort();
-    for (const int* i = selectsorted.buffer->begin(); i < selectsorted.buffer->end(); i++) {
-        cout << *i << ", ";
+}
+
+void mergeSorting() {
+    cout << "Function: mergeSort" << endl;
+    int_sorted sorted;
+    for (int i = 0; i < 25; i++) {
+        cout << *((sorted.insert(rand() % 25 + 1)) - 1) << ", ";
     }
-    cout << endl << "Mergesort" << endl;
+    cout << endl << "sorted" << endl;
     sorted = sort(sorted.begin(), sorted.end());
     for (const int* i = sorted.buffer->begin(); i < sorted.buffer->end(); i++) {
         cout << *i << ", ";
     }
     cout << endl;
-    if (sorted.checksorted()) {
-        cout << "sorted" << endl;
-    }
+
 }
 
 int main(int argc, char** argv) {
     f(int_buffer(10));
     cout << endl;
-    commenceSorting();
+    mergeSorting();
+    selectionSorting();
     return 0;
 }
 

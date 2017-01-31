@@ -1,13 +1,18 @@
-#include <cstdlib>
+//int_buffer.h
 
 #ifndef INT_BUFFER_H
 #define INT_BUFFER_H
 
+#include <cstdlib>
+#include <algorithm>
+#include <iostream>
+#include <climits>
+#include <ctime>
+#include <time.h> 
+
 class int_buffer {
-    int* start;
-    int* ending;
 public:
-    int_buffer();
+    int_buffer() = delete;
     explicit int_buffer(size_t size);
     int_buffer(const int* source, size_t size);
     int_buffer(const int_buffer& rhs);
@@ -20,6 +25,10 @@ public:
     const int* begin() const;
     const int* end() const;
     ~int_buffer();
+private:
+    void swap(int_buffer& temp);
+    int* start;
+    size_t length;
 };
 /*
 class int_sorted{

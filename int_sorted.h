@@ -1,21 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   int_soorted.h
- * Author: stefa_000
- *
- * Created on den 25 januari 2017, 16:48
- */
-
+//int_sorted.h
 #ifndef INT_SOORTED_H
 #define INT_SOORTED_H
 
 #include "int_buffer.h"
-#include <cstdlib>
 
 class int_sorted{
 public:
@@ -32,4 +19,5 @@ public:
 };
 
 #endif /* INT_SOORTED_H */
+
 
