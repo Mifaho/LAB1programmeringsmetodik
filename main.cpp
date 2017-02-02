@@ -47,7 +47,6 @@ void selectionSorting() {
     int array[400000];
     for (size_t i = 0; i < elements; i++) {
         array[i] = (rand() % elements + 1);
-        cout << array[i] << endl;
     }
     cout << endl;
     int_sorted sorted(array, elements);
