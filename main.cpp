@@ -1,4 +1,5 @@
 //main.cpp
+//v2
 #include "int_sorted.h"
 
 using namespace std;
@@ -18,20 +19,32 @@ int_sorted sort(const int* begin, const int* end) {
 void f(int_buffer buf) {
     cout << "Function: f" << endl;
     *buf.begin() = 1;
-    for (int* i = buf.begin(); i != buf.end(); i++) {
+    for (int* i = buf.begin(); i + 1 != buf.end(); i++) {
         *(i + 1) = *i + 1;
     }
+    cout << endl;
     for (const int* i = buf.begin(); i != buf.end(); i++) {
         cout << *i << ", ";
     }
     cout << endl;
+    for (int* i = buf.begin(); i != buf.end(); i++) {
+        *(i) = rand() % 20 + 1;
+        cout << *i << ", ";
+    }
+    int_sorted sorted;
+    sort(buf.begin(), buf.end());
+    cout << endl << "sorted using mergesort" << endl;
+    for (const int* i = buf.begin(); i != buf.end(); i++) {
+        cout << *i << ", ";
+    }
+    //sorted = sort(array, array + 6);
+    //cout << endl << "over1" << endl;
 }
 
 void selectionSorting() {
     cout << "Function: selectionSort" << endl << endl;
-    srand(time(NULL));
-    size_t elements = 40000;
-    int array[40000];
+    size_t elements = 400000;
+    int array[400000];
     for (size_t i = 0; i < elements; i++) {
         array[i] = (rand() % elements + 1);
     }
@@ -53,17 +66,25 @@ void mergeSorting() {
     }
     cout << endl << "sorted" << endl;
     sorted = sort(sorted.begin(), sorted.end());
-    for (const int* i = sorted.buffer->begin(); i < sorted.buffer->end(); i++) {
+    for (const int* i = sorted.buffer.begin(); i != sorted.buffer.end(); i++) {
         cout << *i << ", ";
     }
-    cout << endl;
-
 }
 
 int main(int argc, char** argv) {
     f(int_buffer(10));
-    cout << endl;
-    mergeSorting();
+    srand(time(NULL));
+    int_sorted tempsort;
+    for (int i = 0; i < 200; i++) {
+        tempsort.insert(rand() % 20 + 1);
+    }
+    cout << endl << "result after inserting 10 numbers" << endl;
+    for (const int* i = tempsort.begin(); i != tempsort.end(); i++) {
+        cout << *i << ", ";
+    }
+    cout << endl << "over2" << endl;
+    //cout << *(tempsort.buffer->begin()) << endl;
+    //mergeSorting();
     selectionSorting();
     return 0;
 }

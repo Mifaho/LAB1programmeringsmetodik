@@ -1,4 +1,5 @@
 //int_buffer.cpp
+//v2
 #include "int_buffer.h"
 
 int_buffer::int_buffer(size_t size) :
@@ -27,7 +28,7 @@ int_buffer & int_buffer::operator=(const int_buffer& rhs) {
 }
 
 int_buffer & int_buffer::operator=(int_buffer&& rhs) {
-    if(&rhs != this){
+    if (&rhs != this) {
         swap(rhs);
     }
     return *this;
